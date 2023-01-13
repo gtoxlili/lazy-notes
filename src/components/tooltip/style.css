@@ -1,0 +1,29 @@
+/* tooltip 的样式 */
+.el-tooltip {
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    position: absolute;
+    z-index: 1000;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 500;
+    transition-property: opacity, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/*箭头*/
+.el-tooltip::after {
+    background: inherit;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    left: var(--arrow-offset-left);
+    top: var(--arrow-offset-top);
+    transform: translate(-50%, -50%) rotate(45deg);
+}

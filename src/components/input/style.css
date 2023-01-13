@@ -1,0 +1,24 @@
+.input-text {
+    display: inline-block;
+    height: 30px;
+    width: 100%;
+    padding: 0 28px 0 10px;
+    font-size: 14px;
+    color: #606266;
+    border-radius: 3px;
+    border: 1px solid #9292928f;
+    transition: all 0.3s;
+    transition-property: border-color, color, box-shadow;
+}
+
+.input-text:focus {
+    outline: 0;
+    color: #000000;
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+.suffixIcon {
+    right: 20px;
+    position: absolute;
+    top: 3px;
+}

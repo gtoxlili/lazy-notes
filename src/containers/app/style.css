@@ -1,0 +1,22 @@
+/*当Sidebar收起时*/
+.sidebar-drawer-collapsed {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/*当Sidebar展开时*/
+.sidebar-drawer-expanded {
+    margin-left: 247px;
+    transition-timing-function: cubic-bezier(0.8, 0, 1, 1);
+}
+
+.content {
+    transition-duration: 200ms;
+    transition-property: margin-left;
+}
+
+/*content的内容*/
+.content-container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    height: calc(100vh - 30px);
+}

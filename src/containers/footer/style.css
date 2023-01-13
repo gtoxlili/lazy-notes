@@ -1,0 +1,11 @@
+.footer {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    border-top: 1px solid rgba(0, 0, 0, .07);
+}
+
+.footer-bottom {
+    height: 24px;
+}

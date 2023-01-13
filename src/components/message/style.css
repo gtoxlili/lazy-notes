@@ -1,0 +1,81 @@
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.message-item-root {
+    list-style: none;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+.message-item {
+    height: 40px;
+    min-width: 250px;
+    box-shadow: 0 8px 10px rgb(0 0 0 / 5%);
+    border-radius: 4px;
+    padding: 0 16px;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    animation: showToast 0.3s cubic-bezier(0.8, 0, 1, 1) forwards;
+}
+
+@keyframes showToast {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes hideToast {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.message-item::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--message-color);
+    height: 2px;
+    content: '';
+    animation: lineDisappear var(--message-duration) linear both;
+}
+
+/*下划线逐渐消失的动画*/
+@keyframes lineDisappear {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+.message-close {
+    font-weight: 800;
+    cursor: pointer;
+    color: #AEB0D7;
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.message-close:hover {
+    color: #000;
+}
