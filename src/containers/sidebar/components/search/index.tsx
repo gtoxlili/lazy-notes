@@ -8,7 +8,7 @@ import AutoExpansion from "@components/autoExpansion";
 import {Skeleton} from "@components/skeleton";
 import Tooltip from "@components/tooltip";
 
-export function Search() {
+export default function Search() {
     console.log('render search')
     const [searchText, setSearchText] = useState('')
     const deferredText = useDeferredValue(searchText)

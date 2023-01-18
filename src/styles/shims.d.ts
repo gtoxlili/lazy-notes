@@ -7,5 +7,7 @@ declare module "react" {
     interface CSSProperties {
         "--arrow-offset-left"?: string;
         "--arrow-offset-top"?: string;
+        "--message-color"?: string;
+        "--message-duration"?: string;
     }
 }

@@ -1,11 +1,12 @@
-import React, {StrictMode} from 'react'
+import React, {lazy, StrictMode} from 'react'
 
 import {createRoot} from "react-dom/client";
 import 'virtual:windi.css'
 import '@styles/common.css'
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
-import App from "@containers/app";
-import message from "@components/message";
+
+// 懒加载路由
+const App = lazy(() => import('@containers/app'))
 
 const rootEl = document.getElementById('root')
 const router = createBrowserRouter(

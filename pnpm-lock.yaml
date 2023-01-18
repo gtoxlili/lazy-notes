@@ -14,6 +14,7 @@ specifiers:
   jotai: ^1.12.0
   jotai-immer: ^0.1.0
   lodash-es: ^4.17.21
+  nanoid: ^4.0.0
   react: ^18.2.0
   react-dom: ^18.2.0
   react-router-dom: ^6.6.1
@@ -34,6 +35,7 @@ dependencies:
   jotai: 1.12.0_ldhptygwmnff4nrhjg35c5utke
   jotai-immer: 0.1.0_dp24wn5ahba4izfoliy5lo56qy
   lodash-es: 4.17.21
+  nanoid: 4.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.6.1_biqbaboplfbrettd7655fr4n2y
@@ -1035,6 +1037,12 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
     dev: true
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /node-releases/2.0.8:
     resolution: {integrity: sha512-dFSmB8fFHEH/s81Xi+Y/15DQY6VHW81nXRj86EMSL3lmuTmK1e+aT4wrFCkTbm+gSwkw4KpX+rT/pMM2c1mF+A==}
