@@ -6,7 +6,6 @@ import {useImmerAtom} from "jotai-immer";
 import {useI18n} from "@lib/hook";
 import {Get} from "type-fest";
 import {LocalizedType} from "@i18n";
-import {MessageProvider} from "@components/message";
 
 interface FilterItemProps {
     title: string
@@ -65,7 +64,6 @@ export default function Filter() {
     const {translation} = useI18n()
 
     return <>
-        <MessageProvider providerId='10086'/>
         <FilterItem title={translation("sideBar.filter.type.title")}><FilterType/></FilterItem>
     </>
 }

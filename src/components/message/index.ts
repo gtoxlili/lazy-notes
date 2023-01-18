@@ -12,13 +12,13 @@ export namespace Message {
         duration: number,
         onClose: () => void
     ) {
-        const args: ArgsProps = {
+        const args = {
             id: new Date().getTime(),
             content,
             type,
             duration,
             onClose
-        }
+        } satisfies ArgsProps;
         EE.emit<ArgsProps>(`message-${providerId}-addItem`, args)
         return {
             'remove': () => EE.emit(`message-${providerId}-removeItem`, args.id),
@@ -79,11 +79,12 @@ export namespace Message {
     export function Loading(
         providerId: string,
         content: string,
+        onClose: () => void = noop
     ) {
         const {
             remove,
             update
-        } = show(providerId, content, 'loading', NaN, noop)
+        } = show(providerId, content, 'loading', NaN, onClose)
         return {
             'remove': remove,
             'resolve': (

@@ -2,11 +2,12 @@ import {CSSProperties, ReactNode, useCallback, useLayoutEffect, useRef} from "re
 import {noop} from "@lib/helper";
 import './style.css'
 import {useImmer} from "use-immer";
+import {PLACEMENT_MAP, PlacementType} from "@components/tooltip/type";
 
 interface ToolTipProps {
     children: ReactNode
     title: string
-    placement?: 'top' | 'bottom' | 'left' | 'right'
+    placement?: PlacementType
     trigger?: 'hover' | 'click'
     onOpenChange?: (open: boolean) => void
     backgroundColor?: string
@@ -39,50 +40,8 @@ const Tooltip = (props: ToolTipProps) => {
         setTooltipStyle(draft => {
             draft.backgroundColor = backgroundColor
             draft.color = textColor
-            switch (placement) {
-                case 'top':
-                    draft.bottom = '120%'
-                    draft.left = '50%'
-                    draft.top = undefined
-                    draft.right = undefined
-                    draft.transform = 'translateX(-50%) scale(0)'
-                    draft.transformOrigin = 'bottom'
-                    draft['--arrow-offset-left'] = '50%'
-                    draft['--arrow-offset-top'] = '100%'
-                    break
-                case 'bottom':
-                    draft.top = '120%'
-                    draft.left = '50%'
-                    draft.bottom = undefined
-                    draft.right = undefined
-                    draft.transform = 'translateX(-50%) scale(0)'
-                    draft.transformOrigin = "top"
-                    draft['--arrow-offset-left'] = '50%'
-                    draft['--arrow-offset-top'] = '0'
-                    break
-                case 'left':
-                    draft.right = '150%'
-                    draft.top = '50%'
-                    draft.left = undefined
-                    draft.bottom = undefined
-                    draft.transform = 'translateY(-50%) scale(0)'
-                    draft.transformOrigin = 'left'
-                    draft['--arrow-offset-left'] = '100%'
-                    draft['--arrow-offset-top'] = '50%'
-                    break
-                case 'right':
-                    draft.left = '150%'
-                    draft.top = '50%'
-                    draft.right = undefined
-                    draft.bottom = undefined
-                    draft.transform = 'translateY(-50%) scale(0)'
-                    draft.transformOrigin = 'right'
-                    draft['--arrow-offset-left'] = '0'
-                    draft['--arrow-offset-top'] = '50%'
-                    break
-            }
+            Object.assign(draft, PLACEMENT_MAP[placement])
         })
-
     }, [placement, backgroundColor, textColor])
 
     // 悬停延迟定时器

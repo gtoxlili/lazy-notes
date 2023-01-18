@@ -152,7 +152,9 @@ const MessageItem = memo((props: MessageItemProps) => {
             <Icon
                 className="message-close"
                 icon={closeThick}
-                onClick={onClick}
+                onClick={() => {
+                    setAnimation("hide-toast")
+                }}
             />
         </div>
     </li>
