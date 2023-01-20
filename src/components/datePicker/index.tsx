@@ -2,7 +2,7 @@ import {noop} from "@lib/helper";
 import {Input} from "@components/input";
 import React, {CSSProperties, memo, useCallback, useMemo, useRef, useState} from "react";
 import './style.css';
-import {useAtom} from "jotai";
+import {useAtomValue} from "jotai";
 import {dayjsFuncAtom} from "@stores/jotai";
 
 import {Icon} from '@iconify/react';
@@ -29,7 +29,7 @@ const PickerHeader = memo((props: PickerHeaderProps) => {
         setDate
     } = props;
 
-    const [dayjsFunc] = useAtom(dayjsFuncAtom);
+    const dayjsFunc = useAtomValue(dayjsFuncAtom);
 
     return <div
         flex='~'
@@ -59,7 +59,7 @@ const PickerHeader = memo((props: PickerHeaderProps) => {
 })
 
 const TableHeader = memo(() => {
-    const [dayjsFunc] = useAtom(dayjsFuncAtom);
+    const dayjsFunc = useAtomValue(dayjsFuncAtom);
     const weekDays = useMemo(() => {
             const weekDays = dayjs.weekdaysMin()
             return weekDays.map((day) =>

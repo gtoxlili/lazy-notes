@@ -3,7 +3,7 @@ import './style.css'
 import {Icon} from '@iconify/react';
 import arrowBar from '@iconify/icons-mdi/arrow-collapse-left';
 import {totalAtom} from "@stores/jotai";
-import {useAtom} from "jotai";
+import {useAtomValue} from "jotai";
 import {useI18n} from "@lib/hook";
 
 interface FooterProps {
@@ -12,7 +12,7 @@ interface FooterProps {
 }
 
 const TotalCount = () => {
-    const [total] = useAtom(totalAtom)
+    const total = useAtomValue(totalAtom)
     const {translation} = useI18n()
     return <div
         font='antialiased'

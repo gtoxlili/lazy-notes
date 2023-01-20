@@ -52,11 +52,11 @@ const Tooltip = (props: ToolTipProps) => {
     const showTooltip = useCallback(
         () => {
             if (leaveTimeoutID.current) {
-                clearTimeout(leaveTimeoutID.current)
+                window.clearTimeout(leaveTimeoutID.current)
                 leaveTimeoutID.current = null
             }
             hoverTimeoutID.current =
-                setTimeout(() => {
+                window.setTimeout(() => {
                         setTooltipStyle(draft => {
                             draft.opacity = 1
                             draft.transform = draft.transform?.replace('scale(0)', 'scale(1)')
@@ -71,11 +71,11 @@ const Tooltip = (props: ToolTipProps) => {
     const hideTooltip = useCallback(
         () => {
             if (hoverTimeoutID.current) {
-                clearTimeout(hoverTimeoutID.current)
+                window.clearTimeout(hoverTimeoutID.current)
                 hoverTimeoutID.current = null
             }
             leaveTimeoutID.current =
-                setTimeout(() => {
+                window.setTimeout(() => {
                         setTooltipStyle(draft => {
                             draft.opacity = 0
                             draft.transform = draft.transform?.replace('scale(1)', 'scale(0)')
