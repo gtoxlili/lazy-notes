@@ -3,6 +3,7 @@ import React, {lazy, StrictMode} from 'react'
 import {createRoot} from "react-dom/client";
 import 'virtual:windi.css'
 import '@styles/common.css'
+import '@lib/dayjs'
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 
 // 懒加载路由

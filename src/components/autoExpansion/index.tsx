@@ -1,4 +1,4 @@
-import {memo, ReactNode, useCallback, useEffect, useRef} from "react";
+import {ReactNode, useCallback, useEffect, useRef} from "react";
 import {useImmer} from "use-immer";
 
 interface AutoExpansionProps {
@@ -6,7 +6,7 @@ interface AutoExpansionProps {
     childrenHeight: number
 }
 
-const AutoExpansion = memo((props: AutoExpansionProps) => {
+const AutoExpansion = (props: AutoExpansionProps) => {
     console.log("AutoExpansion is rendering")
     const {children, childrenHeight} = props
 
@@ -17,7 +17,7 @@ const AutoExpansion = memo((props: AutoExpansionProps) => {
             return
         }
         // 向下取整
-        const cnt = Math.floor((ref.current.clientHeight - 16) / childrenHeight)
+        const cnt = Math.round((ref.current.clientHeight - 16) / childrenHeight)
         setItemComponents(
             draft => {
                 // 当 draft.length 大于 cnt 时, 删除多余的元素
@@ -45,6 +45,6 @@ const AutoExpansion = memo((props: AutoExpansionProps) => {
         ref={ref}>
         {itemComponents}
     </div>
-})
+}
 
 export default AutoExpansion

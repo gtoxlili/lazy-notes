@@ -26,22 +26,28 @@ export default function Search() {
             flex='~ col'
             className="search"
         >
-            <Input value={searchText} onChange={setSearchText}
-                   suffixIcon={
-                       <Tooltip
-                           title={translation("sideBar.search.caseSensitive")}
-                           hoverDelay={0.5}
-                           leaveDelay={0.5}
-                       >
-                           <Icon
-                               color={caseSensitive ? '#000' : '#999'}
-                               icon={formatLetterCase}
-                               onClick={toggleCaseSensitive}
-                               width="22"
-                               height="24"
-                           />
-                       </Tooltip>
-                   }/>
+            <div
+                w='full'
+                p='x-4'
+                m='y-3'
+            >
+                <Input value={searchText} onChange={setSearchText}
+                       suffixIcon={
+                           <Tooltip
+                               title={translation("sideBar.search.caseSensitive")}
+                               hoverDelay={0.5}
+                               leaveDelay={0.5}
+                           >
+                               <Icon
+                                   color={caseSensitive ? '#000' : '#999'}
+                                   icon={formatLetterCase}
+                                   onClick={toggleCaseSensitive}
+                                   width="22"
+                                   height="24"
+                               />
+                           </Tooltip>
+                       }/>
+            </div>
             <Suspense fallback={
                 <AutoExpansion childrenHeight={68}><Skeleton/></AutoExpansion>
             }>

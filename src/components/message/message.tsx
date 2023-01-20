@@ -8,7 +8,7 @@ import closeThick from '@iconify/icons-mdi/close-thick';
 import {ArgsProps, MessageContainerProps, MessageItemProps, TYPE_COLOR_MAP} from "@components/message/type";
 import React, {memo, useCallback, useEffect, useLayoutEffect, useMemo, useState} from "react";
 import {useImmer} from "use-immer";
-import EE from '@lib/event'
+import {EE} from '@lib/event'
 import classnames from "classnames";
 
 // 消息类型对应的图标

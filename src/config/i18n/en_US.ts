@@ -12,7 +12,9 @@ const EN = {
                     links: 'Show Links Records',
                     file: 'Show File Records',
                 }
-            }, time: {}, tag: {}
+            }, time: {
+                title: 'Time',
+            }, tag: {}
         }
     }, footer: {
         version: 'Version',

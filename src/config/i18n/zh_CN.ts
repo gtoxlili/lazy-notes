@@ -12,7 +12,9 @@ const ZH = {
                     links: '显示链接记录',
                     file: '显示文件记录',
                 }
-            }, time: {}, tag: {}
+            }, time: {
+                title: '时间',
+            }, tag: {}
         }
     }, footer: {
         version: '版本',

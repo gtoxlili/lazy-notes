@@ -6,7 +6,7 @@
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 9998;
+    z-index: 2999;
 }
 
 /*是否启用蒙版*/
@@ -50,7 +50,7 @@
     height: 100%;
     width: 247px;
     background-color: rgb(248 250 252);
-    z-index: 9999;
+    z-index: 3000;
     border-right: 1px solid rgba(0, 0, 0, .07)
 }
 

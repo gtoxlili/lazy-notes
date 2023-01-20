@@ -1,11 +1,22 @@
 import {atom} from "jotai";
 import {Client} from "@lib/axios";
 import {atomWithStorage} from "jotai/utils";
-import {getDefaultLanguage, LocalizedType, Lang} from "@i18n";
+import {getDefaultLanguage, Lang, LocalizedType} from "@i18n";
 import {Get} from "type-fest";
+import dayjs from "dayjs";
 
 // 全局 i18n
-export const localeAtom = atomWithStorage<Lang>('locale', getDefaultLanguage())
+export const localeAtom = atomWithStorage<Lang>('locale',
+    getDefaultLanguage()
+)
+
+// i18n 变更时，更新 dayjs 的语言
+export const dayjsFuncAtom = atom((get) => {
+    dayjs.locale(get(localeAtom) === 'en_US' ? 'en' : 'zh-cn')
+    return (date?: string | number | dayjs.Dayjs | Date | null | undefined) => {
+        return dayjs(date)
+    }
+})
 
 // axios 实例
 interface AxiosInstanceItem {
@@ -37,14 +48,6 @@ export const filterTypeAtom = atomWithStorage<
     }
 )
 
-export const filterTimeAtom = atomWithStorage<
-    Record<keyof Get<LocalizedType, "sideBar.filter.type.time">, string>
->
-('filterTime',
-    {
-        start: '',
-        end: '',
-    }
-)
+export const filterDateAtom = atom(dayjs().format('YYYY-MM-DD'))
 
 export const filterTagAtom = atomWithStorage<string[]>('filterTag', [])

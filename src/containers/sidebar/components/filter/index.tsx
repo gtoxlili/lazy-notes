@@ -1,11 +1,13 @@
 import React, {ReactNode} from "react";
 import './style.css'
 import Checkbox from "@components/checkbox";
-import {filterTypeAtom} from "@stores/jotai";
+import {filterDateAtom, filterTypeAtom} from "@stores/jotai";
 import {useImmerAtom} from "jotai-immer";
 import {useI18n} from "@lib/hook";
 import {Get} from "type-fest";
 import {LocalizedType} from "@i18n";
+import DatePicker from "@components/datePicker";
+import {useAtom} from "jotai";
 
 interface FilterItemProps {
     title: string
@@ -37,6 +39,19 @@ const FilterType = () => {
     </>
 }
 
+const FilterDate = () => {
+    const [date, setDate] = useAtom(filterDateAtom)
+    return <DatePicker
+        value={date}
+        onClick={setDate}
+        format='YYYY-MM-DD'
+        disabledDate={(date) => {
+            // 随机返回
+            return Math.random() > 0.5
+        }}
+    />
+}
+
 const FilterItem = (props: FilterItemProps) => {
     const {title, children} = props
     return <div
@@ -65,5 +80,6 @@ export default function Filter() {
 
     return <>
         <FilterItem title={translation("sideBar.filter.type.title")}><FilterType/></FilterItem>
+        <FilterItem title={translation("sideBar.filter.time.title")}><FilterDate/></FilterItem>
     </>
 }

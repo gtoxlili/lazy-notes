@@ -16,4 +16,4 @@ class Event {
     }
 }
 
-export default new Event()
+export const EE = new Event()

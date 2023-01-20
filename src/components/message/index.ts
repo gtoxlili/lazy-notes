@@ -1,7 +1,8 @@
 import {noop} from "@lib/helper";
-import EE from "@lib/event";
+
 import {MessageProvider} from "@components/message/provider";
 import {ArgsProps, NoticeType} from "@components/message/type";
+import {EE} from "@lib/event";
 
 export namespace Message {
 
