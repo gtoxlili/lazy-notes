@@ -89,6 +89,9 @@ const Tooltip = (props: ToolTipProps) => {
 
     return <div
         pos='relative'
+        flex='~'
+        // h='full'
+        // align='items-center'
         onClick={() => trigger === 'click' && showTooltip()}
         onMouseEnter={() => trigger === 'hover' && showTooltip()}
         onMouseLeave={hideTooltip}

@@ -12,8 +12,11 @@ import chevronDoubleRight from '@iconify/icons-mdi/chevron-double-right';
 import chevronRight from '@iconify/icons-mdi/chevron-right';
 import classnames from "classnames";
 import dayjs, {Dayjs} from "dayjs";
-import {useVisible} from "@lib/hook";
+import {useI18n, useVisible} from "@lib/hook";
 import {createPortal} from "react-dom";
+
+import calendarRange from '@iconify/icons-mdi/calendar-range';
+import Tooltip from "@components/tooltip";
 
 interface PickerHeaderProps {
     date: Dayjs
@@ -191,8 +194,6 @@ const IDatePicker = memo((props: IDatePickerProps) => {
     )
 
     return createPortal(<div
-        // pos='top-full left-0'
-        // m='t-2'
         z='4000'
         className='dropdown'
         select='none'
@@ -275,6 +276,7 @@ const DatePicker = (props: DatePickerProps) => {
         }
     }, [inputRef.current])
 
+    const {translation} = useI18n()
 
     return <>
         <Input
@@ -283,6 +285,22 @@ const DatePicker = (props: DatePickerProps) => {
             onFocus={show}
             caret='transparent'
             ref={inputRef}
+            suffixIcon={
+                <Tooltip
+                    title={translation("sideBar.filter.time.tooltip")}
+                    hoverDelay={0.5}
+                    placement='top'
+                >
+                    <Icon
+                        color={visible ? '#000' : '#606266'}
+                        icon={calendarRange}
+                        width="18"
+                        height="18"
+                        display='block'
+                        onClick={show}
+                    />
+                </Tooltip>
+            }
         />
         {visible && <Mask onClick={hide}/>}
         <IDatePicker

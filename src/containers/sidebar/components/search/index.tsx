@@ -39,11 +39,11 @@ export default function Search() {
                                leaveDelay={0.5}
                            >
                                <Icon
-                                   color={caseSensitive ? '#000' : '#999'}
+                                   color={caseSensitive ? '#000' : 'rgba(0,0,0,.25)'}
                                    icon={formatLetterCase}
                                    onClick={toggleCaseSensitive}
                                    width="22"
-                                   height="24"
+                                   height="22"
                                />
                            </Tooltip>
                        }/>

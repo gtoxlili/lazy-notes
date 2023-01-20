@@ -4,7 +4,7 @@ export type PlacementType = 'top' | 'bottom' | 'left' | 'right';
 
 export const PLACEMENT_MAP = {
     top: {
-        bottom: '120%',
+        bottom: '150%',
         left: '50%',
         top: undefined,
         right: undefined,
@@ -14,7 +14,7 @@ export const PLACEMENT_MAP = {
         '--arrow-offset-top': '100%'
     },
     bottom: {
-        top: '120%',
+        top: '150%',
         left: '50%',
         bottom: undefined,
         right: undefined,
