@@ -10,14 +10,6 @@ export const localeAtom = atomWithStorage<Lang>('locale',
     getDefaultLanguage()
 )
 
-// i18n 变更时，更新 dayjs 的语言
-export const dayjsFuncAtom = atom((get) => {
-    dayjs.locale(get(localeAtom) === 'en_US' ? 'en' : 'zh-cn')
-    return (date?: string | number | dayjs.Dayjs | Date | null | undefined) => {
-        return dayjs(date)
-    }
-})
-
 // axios 实例
 interface AxiosInstanceItem {
     key: string

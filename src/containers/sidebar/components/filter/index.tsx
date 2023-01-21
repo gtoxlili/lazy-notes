@@ -47,11 +47,14 @@ const testDisabledDate = () => {
 
 const FilterDate = () => {
     const [date, setDate] = useAtom(filterDateAtom)
+    const {translation} = useI18n()
     return <DatePicker
         value={date}
         onClick={setDate}
         format='YYYY-MM-DD'
         disabledDate={testDisabledDate}
+        i18n={translation('sideBar.filter.time.datePickerType') as 'zh-cn' | 'en'}
+        tooltipText={translation('sideBar.filter.time.tooltip')}
     />
 }
 

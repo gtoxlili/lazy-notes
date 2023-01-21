@@ -15,6 +15,7 @@ const EN = {
             }, time: {
                 title: 'Time',
                 tooltip: 'Jump to the selected time point',
+                datePickerType: 'en'
             }, tag: {}
         }
     }, footer: {

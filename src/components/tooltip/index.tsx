@@ -20,6 +20,11 @@ interface ToolTipProps {
      * 离开延迟 单位 : 秒
      */
     leaveDelay?: number
+    /**
+     * 是否禁用
+     */
+    disabled?: boolean
+
 }
 
 const Tooltip = (props: ToolTipProps) => {
@@ -33,6 +38,7 @@ const Tooltip = (props: ToolTipProps) => {
         textColor = '#fff',
         hoverDelay = 0.2,
         leaveDelay = 0.2,
+        disabled = false
     } = props
     const [tooltipStyle, setTooltipStyle] = useImmer<CSSProperties>({opacity: 0} as CSSProperties)
 
@@ -90,11 +96,9 @@ const Tooltip = (props: ToolTipProps) => {
     return <div
         pos='relative'
         flex='~'
-        // h='full'
-        // align='items-center'
-        onClick={() => trigger === 'click' && showTooltip()}
-        onMouseEnter={() => trigger === 'hover' && showTooltip()}
-        onMouseLeave={hideTooltip}
+        onClick={() => !disabled && trigger === 'click' && showTooltip()}
+        onMouseEnter={() => !disabled && trigger === 'hover' && showTooltip()}
+        onMouseLeave={() => !disabled && hideTooltip()}
     >
         <span
             select='none'

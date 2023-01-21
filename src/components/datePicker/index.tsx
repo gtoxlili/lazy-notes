@@ -2,8 +2,6 @@ import {noop} from "@lib/helper";
 import {Input} from "@components/input";
 import React, {CSSProperties, memo, useCallback, useMemo, useRef, useState} from "react";
 import './style.css';
-import {useAtomValue} from "jotai";
-import {dayjsFuncAtom} from "@stores/jotai";
 
 import {Icon} from '@iconify/react';
 import chevronLeft from '@iconify/icons-mdi/chevron-left';
@@ -12,7 +10,7 @@ import chevronDoubleRight from '@iconify/icons-mdi/chevron-double-right';
 import chevronRight from '@iconify/icons-mdi/chevron-right';
 import classnames from "classnames";
 import dayjs, {Dayjs} from "dayjs";
-import {useI18n, useVisible} from "@lib/hook";
+import {useVisible} from "@lib/hook";
 import {createPortal} from "react-dom";
 
 import calendarRange from '@iconify/icons-mdi/calendar-range';
@@ -21,15 +19,15 @@ import Tooltip from "@components/tooltip";
 interface PickerHeaderProps {
     date: Dayjs
     setDate: (date: Dayjs | ((date: Dayjs) => Dayjs)) => void
+    i18n: 'zh-cn' | 'en'
 }
 
 const PickerHeader = memo((props: PickerHeaderProps) => {
     const {
         date,
-        setDate
+        setDate,
+        i18n
     } = props;
-
-    const dayjsFunc = useAtomValue(dayjsFuncAtom);
 
     return <div
         flex='~'
@@ -48,7 +46,7 @@ const PickerHeader = memo((props: PickerHeaderProps) => {
             flex='1'
             text='center sm '
             font='medium antialiased'
-        >{dayjsFunc(date.toDate()).format('MMMM YYYY')}</span>
+        >{date.locale(i18n).format('MMMM YYYY')}</span>
         <div onClick={() => setDate(
             (date) => date.add(1, 'month')
         )}><Icon icon={chevronRight}/></div>
@@ -58,16 +56,24 @@ const PickerHeader = memo((props: PickerHeaderProps) => {
     </div>
 })
 
-const TableHeader = memo(() => {
-    const dayjsFunc = useAtomValue(dayjsFuncAtom);
+interface TableHeaderProps {
+    i18n: 'zh-cn' | 'en'
+}
+
+const TableHeader = memo((props: TableHeaderProps) => {
+    const {i18n} = props;
+
     const weekDays = useMemo(() => {
+            if (dayjs.locale() !== i18n) {
+                dayjs.locale(i18n)
+            }
             const weekDays = dayjs.weekdaysMin()
             return weekDays.map((day) =>
                 <th key={day}>
                     <div>{day}</div>
                 </th>
             )
-        }, [dayjsFunc]
+        }, [i18n]
     )
 
     return <thead>
@@ -123,6 +129,7 @@ interface IDatePickerProps {
     onClick: (date: string) => void;
     visible: boolean;
     position: CSSProperties;
+    i18n: 'zh-cn' | 'en'
 }
 
 const IDatePicker = memo((props: IDatePickerProps) => {
@@ -132,7 +139,8 @@ const IDatePicker = memo((props: IDatePickerProps) => {
         format,
         onClick,
         visible,
-        position
+        position,
+        i18n
     } = props;
 
     const [date, setDate] = useState(() => dayjs(inputDate));
@@ -203,11 +211,11 @@ const IDatePicker = memo((props: IDatePickerProps) => {
             max-w='266px'
             w='266px'
         >
-            <PickerHeader date={date} setDate={setDate}/>
+            <PickerHeader date={date} setDate={setDate} i18n={i18n}/>
             <table
                 className='picker-body'
             >
-                <TableHeader/>
+                <TableHeader i18n={i18n}/>
                 <TableBody monthDays={monthDays} onClick={onClick}/>
             </table>
         </div>
@@ -220,7 +228,9 @@ interface DatePickerProps {
     format?: string,
     onClick?: (date: string) => void;
     // 无法选中的日期
-    disabledDate?: (date: string) => boolean
+    disabledDate?: (date: string) => boolean,
+    i18n?: 'zh-cn' | 'en',
+    tooltipText?: string
 }
 
 // 蒙版
@@ -250,7 +260,9 @@ const DatePicker = (props: DatePickerProps) => {
         format = 'YYYY-MM-DD',
         value,
         onClick = noop,
-        disabledDate = defaultDisabledDate
+        disabledDate = defaultDisabledDate,
+        i18n = "zh-cn",
+        tooltipText
     } = props
 
     const inputDate = useRef(value)
@@ -276,8 +288,6 @@ const DatePicker = (props: DatePickerProps) => {
         }
     }, [inputRef.current])
 
-    const {translation} = useI18n()
-
     return <>
         <Input
             value={dayjs(value).format(format)}
@@ -287,9 +297,10 @@ const DatePicker = (props: DatePickerProps) => {
             ref={inputRef}
             suffixIcon={
                 <Tooltip
-                    title={translation("sideBar.filter.time.tooltip")}
+                    title={tooltipText ?? ''}
                     hoverDelay={0.5}
                     placement='top'
+                    disabled={!tooltipText}
                 >
                     <Icon
                         color={visible ? '#000' : '#606266'}
@@ -310,6 +321,7 @@ const DatePicker = (props: DatePickerProps) => {
             onClick={datePickerClick}
             visible={visible}
             position={datePickerPosition}
+            i18n={i18n}
         />
     </>
 
