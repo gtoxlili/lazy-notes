@@ -1,4 +1,4 @@
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useMemo, useRef, useState} from "react";
 import Config from "../config";
 import {axiosInstanceAtom, localeAtom} from "@stores/jotai";
 import {useAtom} from "jotai";
@@ -64,3 +64,14 @@ export function useI18n() {
     }
 }
 
+/**
+ * 一个能获取旧值的 useMemo
+ */
+export function usePreviousMeno<T>(
+    factory: (oldValue: T | undefined) => T,
+    deps: ReadonlyArray<unknown>,
+) {
+    const ref = useRef<T>()
+    ref.current = useMemo(() => factory(ref.current), deps)
+    return ref.current
+}

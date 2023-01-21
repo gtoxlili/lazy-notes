@@ -39,16 +39,19 @@ const FilterType = () => {
     </>
 }
 
+// 用于测试
+const testDisabledDate = () => {
+    // 随机返回
+    return Math.random() > 0.5
+}
+
 const FilterDate = () => {
     const [date, setDate] = useAtom(filterDateAtom)
     return <DatePicker
         value={date}
         onClick={setDate}
         format='YYYY-MM-DD'
-        disabledDate={(date) => {
-            // 随机返回
-            return Math.random() > 0.5
-        }}
+        disabledDate={testDisabledDate}
     />
 }
 
