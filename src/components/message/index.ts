@@ -3,6 +3,7 @@ import {noop} from "@lib/helper";
 import {MessageProvider} from "@components/message/provider";
 import {ArgsProps, NoticeType} from "@components/message/type";
 import {EE} from "@lib/event";
+import dayjs from "dayjs";
 
 export namespace Message {
 
@@ -14,7 +15,7 @@ export namespace Message {
         onClose: () => void
     ) {
         const args = {
-            id: new Date().getTime(),
+            id: dayjs().valueOf(),
             content,
             type,
             duration,

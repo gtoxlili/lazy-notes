@@ -25,7 +25,7 @@ export default defineConfig(env => ({
             injectRegister: 'inline', // 注入到html中
             manifest: {
                 icons: [{
-                    src: '//cdn.jsdelivr.net/gh/Dreamacro/clash-dashboard/src/assets/Icon.png',
+                    src: '//cdn.jsdelivr.net/gh/gtoxlili/lazy-notes/src/assets/logo.png',
                     sizes: '512x512',
                     type: 'image/png',
                 }],
