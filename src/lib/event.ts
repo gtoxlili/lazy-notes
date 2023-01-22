@@ -1,18 +1,20 @@
 import EventEmitter from 'eventemitter3'
+import {Aciton, ArgsProps} from "@components/message/type";
 
 class Event {
     protected EE = new EventEmitter()
 
-    emit<T>(event: string, data: T) {
-        this.EE.emit(event, data)
+    messageEmit(providerId: string,
+                action: Aciton,
+                data: ArgsProps | number) {
+        this.EE.emit(`message-${providerId}-${action}`, data)
     }
 
-    subscribe<T>(event: string, callback: (data: T) => void) {
-        this.EE.addListener(event, callback)
-    }
-
-    unsubscribe<T>(event: string, callback: (data: T) => void) {
-        this.EE.removeListener(event, callback)
+    messageSubscribe<T extends ArgsProps | number>(
+        providerId: string, action: Aciton,
+        callback: (item: T) => void) {
+        this.EE.on(`message-${providerId}-${action}`, callback)
+        return () => this.EE.off(`message-${providerId}-${action}`, callback)
     }
 }
 

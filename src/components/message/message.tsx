@@ -87,13 +87,13 @@ export const MessageContainer = (props: MessageContainerProps) => {
                         }
                     }
                 })
-            EE.subscribe(`message-${providerId}-addItem`, addItem)
-            EE.subscribe(`message-${providerId}-removeItem`, removeItem)
-            EE.subscribe(`message-${providerId}-updateItem`, updateItem)
+            const unsubscribeAddItem = EE.messageSubscribe(providerId, "addItem", addItem)
+            const unsubscribeRemoveItem = EE.messageSubscribe(providerId, "removeItem", removeItem)
+            const unsubscribeUpdateItem = EE.messageSubscribe(providerId, "updateItem", updateItem)
             return () => {
-                EE.unsubscribe(`message-${providerId}-addItem`, addItem)
-                EE.unsubscribe(`message-${providerId}-removeItem`, removeItem)
-                EE.unsubscribe(`message-${providerId}-updateItem`, updateItem)
+                unsubscribeAddItem()
+                unsubscribeRemoveItem()
+                unsubscribeUpdateItem()
             }
         }
         , [])

@@ -21,16 +21,15 @@ export namespace Message {
             duration,
             onClose
         } satisfies ArgsProps;
-        EE.emit<ArgsProps>(`message-${providerId}-addItem`, args)
+        EE.messageEmit(providerId, "addItem", args)
         return {
-            'remove': () => EE.emit(`message-${providerId}-removeItem`, args.id),
+            'remove': () => EE.messageEmit(providerId, "removeItem", args.id),
             'update': (
                 content: string = args.content,
                 type: NoticeType = args.type,
                 duration: number = args.duration!,
                 onClose: () => void = args.onClose!
-            ) => EE.emit<ArgsProps>
-            (`message-${providerId}-updateItem`,
+            ) => EE.messageEmit(providerId, "updateItem",
                 {
                     id: args.id,
                     'content': content,

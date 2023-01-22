@@ -1,5 +1,7 @@
 export type NoticeType = 'success' | 'info' | 'warning' | 'error' | 'loading'
 
+export type Aciton = 'addItem' | 'removeItem' | 'updateItem'
+
 export interface MessageProviderProps {
     providerId: string
     direction?: 'TR' | 'TL' | 'BR' | 'BL'
