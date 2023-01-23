@@ -42,6 +42,7 @@ const AutoExpansion = (props: AutoExpansionProps) => {
     return <div
         p='x-4 y-2'
         h='full'
+        overflow='hidden'
         ref={ref}>
         {itemComponents}
     </div>

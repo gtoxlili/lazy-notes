@@ -36,7 +36,7 @@ const Checkbox = (props: CheckboxProps) => {
             />
             <span
                 select='none'
-                font='antialiased medium'
+                font='medium'
                 text='sm right'
                 flex='1'
             >{title}

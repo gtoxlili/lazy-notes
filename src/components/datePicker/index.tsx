@@ -45,7 +45,7 @@ const PickerHeader = memo((props: PickerHeaderProps) => {
         <span
             flex='1'
             text='center sm '
-            font='medium antialiased'
+            font='medium'
         >{date.locale(i18n).format('MMMM YYYY')}</span>
         <div onClick={() => setDate(
             (date) => date.add(1, 'month')

@@ -14,6 +14,8 @@ html {
 body {
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -24,7 +26,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: #2c8af8;
+    background: #4a4a4a;
 }
 
 ::-webkit-scrollbar:vertical {

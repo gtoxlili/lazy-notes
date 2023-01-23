@@ -28,17 +28,14 @@ export const totalAtom = atom(
 
 // 筛选条件
 
-export const filterTypeAtom = atomWithStorage<
+export const filterTypeAtom = atom<
     Record<keyof Get<LocalizedType, "sideBar.filter.type.labels">, boolean>
->
-('filterType',
-    {
-        text: true,
-        media: true,
-        links: true,
-        file: true,
-    }
-)
+>({
+    text: true,
+    media: true,
+    links: true,
+    file: true,
+})
 
 export const filterDateAtom = atom(dayjs().format('YYYY-MM-DD'))
 

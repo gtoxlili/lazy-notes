@@ -16,7 +16,9 @@ const ZH = {
                 title: '时间',
                 tooltip: '跳转至所选时间点',
                 datePickerType: 'zh-cn'
-            }, tag: {}
+            }, tag: {
+                title: '标签',
+            }
         }
     }, footer: {
         version: '版本',

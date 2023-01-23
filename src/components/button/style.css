@@ -1,0 +1,51 @@
+.btn {
+    padding: 0 18px;
+    height: 36px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    min-width: 64px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-contained:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-ripple {
+    content: "";
+    position: absolute;
+    border-radius: 100%;
+    top: 20px;
+    left: 20px;
+    transform: translate(-50%, -50%);
+    height: 0;
+    animation: rippleShow 750ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes rippleShow {
+    0% {
+        opacity: 1;
+        width: 0;
+        padding-bottom: 0;
+    }
+    100% {
+        opacity: 0;
+        width: 200%;
+        padding-bottom: 200%;
+    }
+}

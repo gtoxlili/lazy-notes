@@ -49,7 +49,6 @@ const TabContent = memo((props: TabsProps) => {
                     m='b-2'
                     select='none'
                     cursor='pointer'
-                    font='antialiased'
                     className={classnames({'font-bold': i === index})}
                     onClick={() => {
                         setIndex(i)

@@ -15,7 +15,6 @@ const TotalCount = () => {
     const total = useAtomValue(totalAtom)
     const {translation} = useI18n()
     return <div
-        font='antialiased'
         text='sm'
         select='none'
     >{`${total} ${translation('footer.totalCount')}`}

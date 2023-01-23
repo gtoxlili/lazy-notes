@@ -8,10 +8,12 @@ import {Get} from "type-fest";
 import {LocalizedType} from "@i18n";
 import DatePicker from "@components/datePicker";
 import {useAtom} from "jotai";
+import {Button} from "@components/button";
 
 interface FilterItemProps {
     title: string
     children?: ReactNode
+    isEnd?: boolean
 }
 
 
@@ -59,14 +61,14 @@ const FilterDate = () => {
 }
 
 const FilterItem = (props: FilterItemProps) => {
-    const {title, children} = props
+    const {title, children, isEnd} = props
     return <div
         space='y-2'
         p='l-4 t-4'
+        flex={isEnd ? 'auto' : 'none'}
     >
         <div
             text='sm color-[#00000072]'
-            font='antialiased'
             p='l-1 b-1'
             m='r-2'
             border='b color-[#e8e8e8] solid'
@@ -84,8 +86,10 @@ const FilterItem = (props: FilterItemProps) => {
 export default function Filter() {
     const {translation} = useI18n()
 
-    return <>
+    return <div flex='~ col' className='filter'>
         <FilterItem title={translation("sideBar.filter.type.title")}><FilterType/></FilterItem>
         <FilterItem title={translation("sideBar.filter.time.title")}><FilterDate/></FilterItem>
-    </>
+        <FilterItem title={translation("sideBar.filter.tag.title")} isEnd={true}></FilterItem>
+        <div p='b-3 x-6 t-2'><Button fullWidth={true} color='#000' variant='outlined'>重置</Button></div>
+    </div>
 }

@@ -147,7 +147,7 @@ const MessageItem = memo((props: MessageItemProps) => {
                 flex='1'
                 m='l-2 r-4'
                 text='sm'
-                font='antialiased medium'
+                font='medium'
             >{content}</span>
             <Icon
                 className="message-close"
