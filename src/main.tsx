@@ -8,6 +8,7 @@ import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 
 // 懒加载路由
 const App = lazy(() => import('@containers/app'))
+const ChatBox = lazy(() => import('@containers/chatBox'))
 
 const rootEl = document.getElementById('root')
 const router = createBrowserRouter(
@@ -16,7 +17,10 @@ const router = createBrowserRouter(
             path: "/",
             element: <App/>,
             children: [
-                {}
+                {
+                    index: true,
+                    element: <ChatBox/>,
+                }
             ]
         },
         {
